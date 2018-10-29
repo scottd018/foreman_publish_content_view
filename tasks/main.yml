@@ -1,0 +1,38 @@
+- name: 'get the organization object'
+  include_tasks: 'get_satellite_object.yml'
+  vars:
+    object_endpoint:      "{{ organization_endpoint }}"
+    object_name:          "{{ foreman_organization }}"
+    object_type:          'organization'
+    object_filter:        'name'
+    object_filter_method: '='
+
+- name: 'get the content view object'
+  include_tasks: 'get_satellite_object.yml'
+  vars:
+    object_endpoint:      "katello/api/organizations/{{ organization_response.json.results[0].id }}/content_views"
+    object_name:          "{{ foreman_content_view }}"
+    object_type:          'content_view'
+    object_filter:        'name'
+    object_filter_method: '='
+
+- name: 'publish a new version of a content view'
+  uri:
+    method:           POST
+    user:             "{{ foreman_user }}"
+    password:         "{{ foreman_password }}"
+    force_basic_auth: true
+    follow_redirects: all
+    status_code:      202
+    timeout:          "{{ foreman_api_timeout }}"
+    url:              "https://{{ foreman_server }}/katello/api/content_views/{{ content_view_response.json.results[0].id }}/publish"
+    validate_certs:   false
+    body_format:      json
+    body:
+      description:                     "Ansible Published at {{ '%Y-%m-%d %H:%M:%S' | strftime }}"
+      force_yum_metadata_regeneration: true
+  register: publish_response
+
+- include: 'wait_for_task_completion.yml'
+  vars:
+    foreman_task_uuid: "{{ publish_response.json.id }}"
