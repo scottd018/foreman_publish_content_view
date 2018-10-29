@@ -5,9 +5,13 @@ All default variables, which are not likely to change, are stored in **./default
 Required variables are as follows:
 
 **foreman_organization:** the organization that the content view belongs to
+
 **foreman_server:**       the IP Address or Hostname used to connect to the Foreman/Satellite API
+
 **foreman_content_view:** the name of the content view
+
 **foreman_user:**         the user which has appropriate access to publish the content view
+
 **foreman_password:**     the password of the user which has appropriate access to publish the content view
 
 # Sample Inventory
