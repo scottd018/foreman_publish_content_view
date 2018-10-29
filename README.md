@@ -14,9 +14,9 @@ Required variables are as follows:
 
 **foreman_password:**     the password of the user which has appropriate access to publish the content view
 
-# Sample Inventory
+# Inventory
 
-**NOTE:** this role is largely dependent upon API calls and is not likely to depend on SSH connectivity, and therefore may likely depend on using `localhost` as the inventory.  One may delegate to another server if required, but `localhost` is sufficient assuming proper connectivity to the Foreman API.
+**NOTE:** this role is largely dependent upon API calls and is not likely to depend on SSH connectivity, and therefore may likely depend on using `localhost` as the inventory.  One may delegate to another server if required, but `localhost` is sufficient assuming proper connectivity to the Foreman API.  Ansible maintains `localhost` in its inventory by default and thus, no further work to the inventory is needed if `localhost` is a desired execution target.
 
 # Sample Playbook
 
