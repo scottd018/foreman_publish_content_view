@@ -1,3 +1,7 @@
+# Additional Information
+
+See also https://github.com/scottd018/foreman_promote_content_view for the promotion of the latest content view version throughout a specified lifecycle.
+
 # Variables
 
 All default variables, which are not likely to change, are stored in **./defaults/main.yml** and should be reviewed before executing a playbook, with this role.
@@ -31,7 +35,7 @@ Required variables are as follows:
     - role: foreman_publish_content_view
       vars:
         foreman_organization: 'Scott-Net'
-        foreman_server:       '192.168.89.164'
+        foreman_server:       '10.10.10.164'
         foreman_content_view: 'Test-View'
         foreman_user:         'admin'
         foreman_password:     'smartvm'
